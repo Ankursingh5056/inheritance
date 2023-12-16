@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Vehicle(brand,model,speed,fuelType){
+            this.Brand = brand;
+            this.Model = model;
+            this.Speed = speed;
+            this.fuelType = fuelType;
+
+        }
+        Vehicle.prototype.accelerate = function(){
+            this.Speed++;
+            console.log(this.Speed)
+        }
+        Vehicle.prototype.break = function(){
+            
+            let dec=this.Speed-1
+            console.log(dec)
+        }
+        Vehicle.prototype.refuel = function(){
+            console.log(" Vehicle is refueling..")
+        }
+        function car(brand,model,speed,fuelType){
+            Vehicle.call(this,brand,model,speed,fuelType)
+            this.numberOfWheels=4;
+        }
+        car.prototype = Object.create(Vehicle.prototype);
+        car.prototype.honk = function(){
+            console.log("Honking sound")
+        }
+        let Mycar = new car("tata nano",2020,200,"petrol");
+        console.log(Mycar)
+        Mycar.accelerate()
+        Mycar.break()
+
+
+        function Aeroplane(brand,model,speed,fuelType){
+            Vehicle.call(this,brand,model,speed,fuelType)
+            this.numberOfEngines = 4;
+            this.hasLandingGear = 2;
+        }
+        Aeroplane.prototype = Object.create(Vehicle)
+        Aeroplane.prototype.takeOff = function(){
+            console.log("take off")
+        }
+
+        let MyAero = new Aeroplane("Indigo",2020,2000,"jet Fuel");
+        console.log(MyAero)
+        MyAero.takeOff()
+    </script>
+</body>
+</html>
